@@ -49,7 +49,7 @@ void insertMap(HashMap * map, char * key, void * value) {
     int pos = hash(key, map->capacity);
     int aux = pos;
     bool libre = true;
-    struct Pair *n = (struct Pair*) malloc(sizeof(struct Pair*));
+    struct Pair *n = (struct Pair*) malloc(sizeof(struct Pair));
     while ( (map->buckets[pos]->key == NULL) || (is_equal(map->buckets[pos]->key, key) == 0) ) {
         pos++;
         if (pos > map->capacity) {
@@ -59,7 +59,7 @@ void insertMap(HashMap * map, char * key, void * value) {
             break;
         }
     }
-    
+
     if( (map->buckets[pos]->key == NULL) || (is_equal(map->buckets[pos]->key, key) == 0) ) {
         libre = false;
     }

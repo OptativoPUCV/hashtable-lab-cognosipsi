@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
@@ -47,8 +48,9 @@ int is_equal(void* key1, void* key2){
 void insertMap(HashMap * map, char * key, void * value) {
     int pos = hash(key, map->capacity);
     int aux = pos;
+    bool libre = true;
     struct Pair *n = (struct Pair*) malloc(sizeof(struct Pair*));
-    while ( (map->buckets[pos]->key != NULL) && (is_equal(map->buckets[pos]->key, key) != 0) ) {
+    while ( (map->buckets[pos]->key == NULL) || (is_equal(map->buckets[pos]->key, key) == 0) ) {
         pos++;
         if (pos > map->capacity) {
             pos = 0;
@@ -57,11 +59,18 @@ void insertMap(HashMap * map, char * key, void * value) {
             break;
         }
     }
-    strcpy(n->key, key);
-    strcpy(n->value, value);
-    map->buckets[pos] = n;
-    map->size++;
-    map->current = pos;
+    
+    if( (map->buckets[pos]->key == NULL) || (is_equal(map->buckets[pos]->key, key) == 0) ) {
+        libre = false;
+    }
+
+    if(libre) {
+        strcpy(n->key, key);
+        strcpy(n->value, value);
+        map->buckets[pos] = n;
+        map->size++;
+        map->current = pos;
+    }
 }
 
 void enlarge(HashMap * map) {

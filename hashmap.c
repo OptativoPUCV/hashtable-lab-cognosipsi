@@ -134,7 +134,6 @@ void * firstMap(HashMap * map) {
 
 void * nextMap(HashMap * map) {
     unsigned long i = map->current;
-    unsigned long aux = i;
     while (i < map->capacity) {
         i++;
         if ((map->buckets[i] != NULL) && (map->buckets[i]->key != NULL)) {
@@ -144,7 +143,7 @@ void * nextMap(HashMap * map) {
         if (i == map->capacity) {
             i = 0;
         }
-        if (i == aux) {
+        if (i == map->current) {
             break;
         }
     }

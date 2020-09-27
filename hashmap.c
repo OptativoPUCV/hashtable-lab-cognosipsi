@@ -24,8 +24,8 @@ struct HashMap {
 
 Pair * createPair( char * key,  void * value) {
     Pair * new = (Pair *)malloc(sizeof(Pair));
-    strcpy(new->key, key);
-    strcpy(new->value, value);
+    new->key = key;
+    new->value = value;
     return new;
 }
 
@@ -65,8 +65,8 @@ void insertMap(HashMap * map, char * key, void * value) {
     }
 
     if(libre) {
-        strcpy(n->key, key);
-        strcpy(n->value, value);
+        n->key = key;
+        n->value = value;
         map->buckets[pos] = n;
         map->size++;
         map->current = pos;

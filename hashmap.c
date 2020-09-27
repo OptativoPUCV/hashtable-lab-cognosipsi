@@ -134,10 +134,17 @@ void * firstMap(HashMap * map) {
 
 void * nextMap(HashMap * map) {
     unsigned long i = map->current;
+    unsigned long aux = i;
     while (i < map->capacity) {
         if ((map->buckets[i] != NULL) && (map->buckets[i]->key != NULL)) {
             map->current = i;
             return map->buckets[i]->value;
+        }
+        if (i == map->capacity) {
+            i = 0;
+        }
+        if (i == aux) {
+            break;
         }
         i++;
     }

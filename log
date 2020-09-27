@@ -180,3 +180,9 @@ Sun Sep 27 03:07:23 UTC 2020:
  1 file changed, 5 insertions(+), 5 deletions(-)
  tests:  0|0
 364efff
+Sun Sep 27 03:08:03 UTC 2020: 
+ hashmap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  8|3
+total_score: 40/70
+7c115f5

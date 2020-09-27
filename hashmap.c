@@ -48,7 +48,6 @@ int is_equal(void* key1, void* key2){
 void insertMap(HashMap * map, char * key, void * value) {
     unsigned long pos = hash(key, map->capacity);
     int aux = pos;
-    bool libre = true;
     struct Pair *n = createPair(key, value);
     while ( (map->buckets[pos] != NULL) && (is_equal(map->buckets[pos]->key, key) == 0) ) {
         pos++;
@@ -59,18 +58,12 @@ void insertMap(HashMap * map, char * key, void * value) {
             break;
         }
     }
+    n->key = key;
+    n->value = value;
+    map->buckets[pos] = n;
+    map->size++;
+    map->current = pos;
 
-    if( (map->buckets[pos] != NULL) && (is_equal(map->buckets[pos]->key, key) == 0) ) {
-        libre = false;
-    }
-
-    if(libre) {
-        n->key = key;
-        n->value = value;
-        map->buckets[pos] = n;
-        map->size++;
-        map->current = pos;
-    }
 }
 
 void enlarge(HashMap * map) {

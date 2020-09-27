@@ -133,6 +133,13 @@ void * firstMap(HashMap * map) {
 }
 
 void * nextMap(HashMap * map) {
-
+    unsigned long i = map->current;
+    while (i < map->capacity) {
+        if ((map->buckets[i] != NULL) && (map->buckets[i]->key != NULL)) {
+            map->current = i;
+            return map->buckets[i]->value;
+        }
+        i++;
+    }
     return NULL;
 }

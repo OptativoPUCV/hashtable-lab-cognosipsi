@@ -79,8 +79,22 @@ HashMap * createMap(long capacity) {
     return map;
 }
 
-void eraseMap(HashMap * map,  char * key) {    
-
+void eraseMap(HashMap * map,  char * key) {
+    unsigned long pos = hash(key, map->capacity);
+    unsigned long aux = pos;    
+    while (map->buckets[pos] != NULL) {
+        if (is_equal(map->buckets[pos]->key, key)) {
+            map->buckets[pos]->key = NULL;
+            break;
+        }
+        pos++;
+        if (pos == map->capacity) {
+            pos = 0;
+        }
+        if (pos == aux) {
+            break;
+        }
+    }
 }
 
 void * searchMap(HashMap * map,  char * key) {  

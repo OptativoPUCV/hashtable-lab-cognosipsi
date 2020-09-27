@@ -52,7 +52,7 @@ void insertMap(HashMap * map, char * key, void * value) {
     struct Pair *n = createPair(key, value);
     while ( (map->buckets[pos] != NULL) && (is_equal(map->buckets[pos]->key, key) == 0) ) {
         pos++;
-        if (pos > map->capacity) {
+        if (pos == map->capacity) {
             pos = 0;
         }
         if (pos == aux) {

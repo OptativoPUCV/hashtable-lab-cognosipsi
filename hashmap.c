@@ -135,7 +135,6 @@ void * firstMap(HashMap * map) {
 void * nextMap(HashMap * map) {
     unsigned long i = map->current + 1;
     while (i < map->capacity) {
-        i++;
         if (i == map->capacity) {
             i = 0;
         }
@@ -143,6 +142,7 @@ void * nextMap(HashMap * map) {
             map->current = i;
             return map->buckets[i]->value;
         }
+        i++;
         if (i == map->current) {
             break;
         }

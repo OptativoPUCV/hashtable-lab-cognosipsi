@@ -67,14 +67,11 @@ void enlarge(HashMap * map) {
     enlarge_called = 1; //no borrar (testing purposes)
     Pair **aux = (Pair **)malloc(map->capacity*sizeof(Pair *));
     unsigned long i;
-    for (i = 0; i < map->capacity; i++) {
-        aux[i]->key = map->buckets[i]->key;
-        aux[i]->value = map->buckets[i]->value;
-    }
+    aux = map->buckets;
     map->capacity *= 2;
     map->buckets = (Pair **)malloc(map->capacity*sizeof(Pair *));
     map->size = 0;
-    for (i = 0; i < map->capacity; i++) {
+    for (i = 0; i < map->capacity/2; i++) {
         insertMap(map, aux[i]->key, aux[i]->value);
         map->size++;
     }

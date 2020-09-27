@@ -49,7 +49,7 @@ void insertMap(HashMap * map, char * key, void * value) {
     unsigned long pos = hash(key, map->capacity);
     unsigned long aux = pos;
     struct Pair *n = createPair(key, value);
-    while ( (map->buckets[pos] != NULL) && (is_equal(map->buckets[pos]->key, key) == 0) ) {
+    while ( (map->buckets[pos] != NULL) && (is_equal(map->buckets[pos]->key, key) == 1) ) {
         pos++;
         if (pos == map->capacity) {
             pos = 0;
@@ -89,7 +89,7 @@ void * searchMap(HashMap * map,  char * key) {
     unsigned long pos = hash(key, map->capacity);
     unsigned long aux = pos;
     valor = map->buckets[pos];
-    while ( (map->buckets[pos] != NULL) && (is_equal(map->buckets[pos]->key, key) == 0) ) {
+    while ( is_equal(map->buckets[pos]->key, key) == 0 ) {
         pos++;
         if (pos == map->capacity) {
             pos = 0;

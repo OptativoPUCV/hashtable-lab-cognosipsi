@@ -81,7 +81,6 @@ HashMap * createMap(long capacity) {
 
 void eraseMap(HashMap * map,  char * key) {    
 
-
 }
 
 void * searchMap(HashMap * map,  char * key) {  
@@ -89,7 +88,7 @@ void * searchMap(HashMap * map,  char * key) {
     unsigned long pos = hash(key, map->capacity);
     unsigned long aux = pos;
     n = map->buckets[pos];
-    while ( is_equal(n->key, key) == 0 ) {
+    while (!is_equal(n->key, key)) {
         n = map->buckets[pos];
         pos++;
         if (pos == map->capacity) {

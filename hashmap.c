@@ -89,7 +89,7 @@ void * searchMap(HashMap * map,  char * key) {
     unsigned long pos = hash(key, map->capacity);
     unsigned long aux = pos;
     valor = map->buckets[pos];
-    while ( is_equal(map->buckets[pos]->key, key) == 0 ) {
+    while ( is_equal(map->buckets[pos]->key, key) == 1 ) {
         pos++;
         if (pos == map->capacity) {
             pos = 0;
